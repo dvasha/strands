@@ -9,6 +9,7 @@ Strands is a (cleverly designed) wordsearch game. Player must find the theme wor
 - When finding a word that isn't part of the goal theme words, user will be granted an award: precentage of a hint. If the word is "on theme" but not part of the solution of the puzzle, the award is higher.
 - The puzzle solution leaves no holes
 - All ways to write a certain theme word part of a valid puzzle solution.
+- letters cannot be reused (as such, goal words do not overlap)
 
 ### Some examples:
 Let's see some valid and invalid layouts using this tiny 3x3 example.
@@ -24,30 +25,27 @@ Let's see some valid and invalid layouts using this tiny 3x3 example.
 </tr>
 </table>
 
-For the word list **[ABC, FAE, DOE]** the puzzle is invalid. There are two ways to write the word ABC, one of them results in a valid puzzle, the other does not.
-<table>
-<tr>
-<td style="background-color=pink" >A</td>   <td bgcolor= #1188aa >B</td>    <td bgcolor= #1188aa >C</td>
-</tr>
-<tr>
-<td bgcolor= >F</td>   <td bgcolor= #88aa11 >A</td>    <td bgcolor=rgb(175, 225, 136) >E</td>
-</tr>
-<tr>
-<td bgcolor=#bb3344 >D</td>   <td = bgcolor=#ffffa>O</td>    <td>E</td>
-</tr>
-</table>
+For the word list **[ABC, FAE, DOE]** the puzzle is invalid. There are two ways to write the word ABC, one of them results in a valid solution, the other does not.
+|valid solution|invalid solution|
+|--|--|
+|<table> <tr> <td>**A**</td>   <td>**B**</td>    <td>**C**</td> </tr><tr><td>F</td>   <td>A</td>    <td>E</td></tr><tr><td>_D_</td>   <td>_O_</td>    <td>_E_</td></tr></table>|<table><tr><td>A</td>   <td>**B**</td>    <td>**C**</td></tr><tr><td>F</td>  <td>**A**</td> <td>E</td> </tr> <tr> <td>_D_</td>   <td>_O_</td>    <td>_E_</td></tr></table>|
+|| no valid way to get "FAE"|
 
+For the word list **[BIG, FAE, DOE]** the following puzzle is valid since all ways to construct the words exists in a valid solution.
+|valid solution 1|valid solution 2|
+|--|--|
+|<table> <tr> <td>B</td>   <td>I</td>    <td>G</td> </tr><tr><td>**F**</td>   <td>**A**</td>    <td>**E**</td></tr><tr><td>_D_</td>   <td>_O_</td>    <td>_E_</td></tr></table>|<table> <tr> <td>B</td>   <td>I</td>    <td>G</td> </tr><tr><td>**F**</td>   <td>**A**</td>    <td>_E_</td></tr><tr><td>_D_</td>   <td>_O_</td>    <td>**E**</td></tr></table>|
 
-### Formal
+Now that we've seen some examples, we can move forward to getting a formal solution for our problem.
+
+### Formal Solution
 Definitions:
-- $Strand$ : Pair of (string, positions).</br>
-Positions is a list of coordinates in a grid such that for $ i \in [0, len(S)-1], c_i \in S, dist(position(c_i),position( c_\mathrm{(i+1)}))=1$ 
+- Puzzle $P\in L(W)$
+- Goal Words: set of words $W=\{w_1, w_2,...\}$
+- Layout $L:W\rightarrow M(a,b)$ function that maps a word list to a matrix of a x b, such that for word $w$ all characters are within 1 cell in the matrix. $$c{ _\mathrm{i+1}}.x,c{ _\mathrm{i+1}}.y \in [c_i.x-1,c_i.y-1]\times[c_i.x+1,c_i.y+1] / [c_i.x,c_i.y]$$
+-
 
-- 
-
-
-
-A strand S is valid in the layout iff for all strands that exist in the layout are part of a valid puzzle.
+Lemma: A puzzle is valid $\iff$ all appea
 
 ## Python Porgrams
 ### Layout.py
