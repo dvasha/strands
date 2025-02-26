@@ -3,15 +3,11 @@ In the spirit of Technion Algoritm 1 course:</br>
 Let's start with a more casual explanation of our goals and examples to clarify!
 We want to have an algorithm to generate a "Strands" puzzle, for our [NYT Strands](https://www.nytimes.com/games/strands) clone.
 
-### What is Strands?
-Strands is a (cleverly designed) wordsearch game. Player must find the theme words, among them there is a _Spanagram_, a word that goes from one edge of the grid to the opposite edge, often the key theme word. 
-- Words can be written in all 8 directions
-- When finding a word that isn't part of the goal theme words, user will be granted an award: precentage of a hint. If the word is "on theme" but not part of the solution of the puzzle, the award is higher.
-- The puzzle solution leaves no holes
-- All ways to write a certain theme word part of a valid puzzle solution.
-- letters cannot be reused (as such, goal words do not overlap)
 
-### Some examples:
+#### What is Strands?
+Strands is a modified wordsearch game. In addition to having a _spanagram_ (word that goes from one side of the table to the opposite side), words can be written in all directions (where each letter is a chess king's step away) and all cells are used in the solution.
+
+#### Some examples:
 Let's see some valid and invalid layouts using this tiny 3x3 example.
 <table>
 <tr>
@@ -36,16 +32,17 @@ For the word list **[BIG, FAE, DOE]** the following puzzle is valid since all wa
 |--|--|
 |<table> <tr> <td>B</td>   <td>I</td>    <td>G</td> </tr><tr><td>**F**</td>   <td>**A**</td>    <td>**E**</td></tr><tr><td>_D_</td>   <td>_O_</td>    <td>_E_</td></tr></table>|<table> <tr> <td>B</td>   <td>I</td>    <td>G</td> </tr><tr><td>**F**</td>   <td>**A**</td>    <td>_E_</td></tr><tr><td>_D_</td>   <td>_O_</td>    <td>**E**</td></tr></table>|
 
-Now that we've seen some examples, we can move forward to getting a formal solution for our problem.
+Now that we've seen some examples, we can move forward to getting a formal solution for our problem. 
 
 ### Formal Solution
 Definitions:
 - Puzzle $P\in L(W)$
-- Goal Words: set of words $W=\{w_1, w_2,...\}$
+- Words: set of strings $W=\{w_1, w_2,...\}$
 - Layout $L:W\rightarrow M(a,b)$ function that maps a word list to a matrix of a x b, such that for word $w$ all characters are within 1 cell in the matrix. $$c{ _\mathrm{i+1}}.x,c{ _\mathrm{i+1}}.y \in [c_i.x-1,c_i.y-1]\times[c_i.x+1,c_i.y+1] / [c_i.x,c_i.y]$$
--
+- Stranding of word $\tilde{w}$ in puzzle $P$ is a 
 
-Lemma: A puzzle is valid $\iff$ all appea
+A puzzle is valid if for all instances of word, there exists a solution for the puzzle.
+
 
 ## Python Porgrams
 ### Layout.py
