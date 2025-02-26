@@ -27,7 +27,7 @@ Let's see some valid and invalid layouts using this tiny 3x3 example.
 For the word list **[ABC, FAE, DOE]** the puzzle is invalid. There are two ways to write the word ABC, one of them results in a valid puzzle, the other does not.
 <table>
 <tr>
-<td bgcolor=#b2cdf8 font-color="black" >A</td>   <td bgcolor= #1188aa >B</td>    <td bgcolor= #1188aa >C</td>
+<td style="background-color=pink" >A</td>   <td bgcolor= #1188aa >B</td>    <td bgcolor= #1188aa >C</td>
 </tr>
 <tr>
 <td bgcolor= >F</td>   <td bgcolor= #88aa11 >A</td>    <td bgcolor=rgb(175, 225, 136) >E</td>
