@@ -104,5 +104,9 @@ def buildLayout(lst):
         return final
     
 
+def transformlist(lst):
+    # create list of word lengths, order it and then create a new list of its marker
+
 wordlist = ["SUPERMARIOBROS", "TOAD", "BOWSER", "LUIGI", "PEACH", "MUSHROOM", "GOOMBA"]
+baselist = transformlist(wordlist)
 res = buildLayout(wordlist)
